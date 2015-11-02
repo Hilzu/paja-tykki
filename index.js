@@ -1,6 +1,7 @@
 import 'babel-core/register'
 import express from 'express'
 import fetch from 'node-fetch'
+import pajaify from './pajaify'
 
 const app = express()
 app.set('x-powered-by', false)
@@ -11,9 +12,8 @@ const userAgent = 'User-Agent	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) Ap
 app.all('*', (req, res, next) => {
   fetch(sourceUrl, { headers: { 'User-Agent': userAgent } })
     .then((res) => res.text())
-    .then(body => {
-      res.send(body)
-    })
+    .then(pajaify)
+    .then((pajareissa) => res.send(pajareissa))
     .catch((err) => next(err))
 })
 
