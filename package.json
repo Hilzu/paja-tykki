@@ -1,0 +1,11 @@
+{
+  "name": "paja-tykki",
+  "version": "0.0.0",
+  "description": "Tykitä pajaa suoneen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
