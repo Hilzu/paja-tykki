@@ -22,7 +22,7 @@ app.use((err, req, res, next) => {
   res.status(500).send('Everything broke :(')
 })
 
-const server = app.listen(3000, () => {
+const server = app.listen(3000, 'localhost', () => {
   const host = server.address().address
   const port = server.address().port
 
