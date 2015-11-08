@@ -55,6 +55,16 @@ function hoidaVajarit ($) {
 
   // Artikkelisivun vasen navi
   $('.uutiset .vasen a[href]').append(pajareissa)
+
+  $('title').text('paja.tykki.eu | Suomen pajarein uutispalvelu')
+  $('meta[name="title"], meta[property="og:title"]')
+    .attr('content', 'paja.tykki.eu | Suomen pajarein uutispalvelu')
+
+  $('meta[name="description"], meta[property="og:description"]')
+    .attr('content', 'Uutiset, urheilu, viihde, talous, sää, elämäntapa, terveys, perhe, ruoka - paja.tykki.eu, kaikki pajariuutiset yhdestä osoitteesta kellon ympäri')
+
+  $('meta[property="og:site_name"]').attr('content', 'paja.tykki.eu')
+  $('meta[property="og:url"]').attr('content', 'paja.tykki.eu')
 }
 
 function estäVajarit ($) {
