@@ -37,13 +37,24 @@ function lisääFobba ($) {
 function hoidaVajarit ($) {
   $('a > span.otsikko:last-of-type').append(pajareissa)
   $('.vasen > p > a:not([class]) > span').before(pajareissa)
-  $('.list-title').append(pajareissa)
-  $('.link-list > p > a').append(pajareissa)
-  $('.widget--iltv > .widget__link-list > p > a:not(.palstakuva)').append(pajareissa)
   $('.monikarki > ul > li > a').append(pajareissa)
   $('.monikarki > p > a').append(pajareissa)
-  $('.juttuotsikko').append(pajareissa)
-  $('#container_vasen a').append(pajareissa)
+
+  // Oikean reunan widgetin, joissa numerolista
+  $('.widget:not(.widget--iltv) .widget__link-list .list-title').append(pajareissa)
+
+  // ILTV widgetin isot linkit
+  $('.widget--iltv > div:not([class]) .widget__link-list a[href]').append(pajareissa)
+
+  // ILTV ja pääkirjoitus widgettien linkkilista (pienet thumbnailit)
+  $('.widget--iltv > .widget__link-list a:not(.palstakuva)').append(pajareissa)
+  $('.widget--paakirjoitus .widget__link-list a:not(.palstakuva)').append(pajareissa)
+
+  // Artikkelisivun otsikko
+  $('.keski > .juttuotsikko').append(pajareissa)
+
+  // Artikkelisivun vasen navi
+  $('.uutiset .vasen a[href]').append(pajareissa)
 }
 
 function estäVajarit ($) {
