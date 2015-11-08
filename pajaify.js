@@ -42,6 +42,8 @@ function hoidaVajarit ($) {
   $('.widget--iltv > .widget__link-list > p > a:not(.palstakuva)').append(pajareissa)
   $('.monikarki > ul > li > a').append(pajareissa)
   $('.monikarki > p > a').append(pajareissa)
+  $('.juttuotsikko').append(pajareissa)
+  $('#container_vasen a').append(pajareissa)
 }
 
 function estäVajarit ($) {
