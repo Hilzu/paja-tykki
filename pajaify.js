@@ -48,6 +48,9 @@ function hoidaVajarit ($) {
   // Oikean reunan widgetin, joissa numerolista
   $('.widget:not(.widget--iltv) .widget__link-list .list-title').append(pajareissa)
 
+  // Pääaiheet widget
+  $('.widget--paaaiheet .link-list p > a').append(pajareissa)
+
   // ILTV widgetin isot linkit
   $('.widget--iltv > div:not([class]) .widget__link-list a[href]').append(pajareissa)
 
