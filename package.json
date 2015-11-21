@@ -2,10 +2,10 @@
   "name": "paja-tykki",
   "version": "0.0.0",
   "description": "Tykitä pajaa suoneen",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "standard",
-    "start": "node index.js"
+    "start": "node -r babel-core/register app.js"
   },
   "author": "",
   "license": "ISC",
