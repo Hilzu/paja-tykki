@@ -35,10 +35,15 @@ function lisääFobba ($) {
 }
 
 function hoidaVajarit ($) {
-  $('a > span.otsikko:last-of-type').append(pajareissa)
   $('.vasen > p > a:not([class]) > span').before(pajareissa)
   $('.monikarki > ul > li > a').append(pajareissa)
   $('.monikarki > p > a').append(pajareissa)
+
+  // Etusivun otsikot
+  $('.df-articles [class^="df-fs"]').append(pajareissa)
+
+  // Uutiskategoriasivujen otsikot
+  $('a > span.otsikko:last-of-type').append(pajareissa)
 
   // Oikean reunan widgetin, joissa numerolista
   $('.widget:not(.widget--iltv) .widget__link-list .list-title').append(pajareissa)
