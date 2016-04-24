@@ -6,7 +6,7 @@ const app = express()
 app.set('x-powered-by', false)
 
 const sourceUrl = 'http://www.iltalehti.fi'
-const userAgent = 'User-Agent	Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/601.2.7 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.7'
+const userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/601.5.17 (KHTML, like Gecko) Version/9.1 Safari/601.5.17'
 
 app.all('*', (req, res, next) => {
   fetch(sourceUrl + req.originalUrl, { headers: { 'User-Agent': userAgent } })
