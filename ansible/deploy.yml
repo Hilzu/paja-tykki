@@ -1,0 +1,60 @@
+---
+- hosts: tykki
+  become: yes
+
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=restarted
+
+  tasks:
+    - name: Install Pip
+      apt: name=python-pip
+
+    - name: Install Docker Python library
+      pip: name=docker-py
+
+    - name: Install rsync
+      apt: name=rsync
+
+    - name: Sync code to server
+      synchronize:
+        src: .
+        dest: /tmp/
+        owner: no
+        group: no
+        delete: yes
+      become: no
+
+    - name: Build docker image
+      docker_image:
+        name: paja-tykki
+        path: /tmp/paja-tykki/
+
+    - name: Run container
+      docker_container:
+        name: paja-tykki
+        image: paja-tykki
+        ports: "3000:3000"
+
+    - name: Create nginx cache dir
+      file: path=/var/lib/nginx/cache state=directory mode=0700 owner=nginx
+      register: d1
+
+    - name: Create paja nginx log path
+      file: path=/var/log/nginx/paja state=directory mode=0755 owner=nginx group=adm
+      register: d2
+
+    - name: Create nginx configuration
+      template:
+        src: templates/paja_tykki.conf.j2
+        dest: /etc/nginx/conf.d/paja_tykki.conf
+        owner: root
+        group: root
+        mode: 0644
+      register: conf
+      notify: restart nginx
+
+    - name: Validate nginx configuration
+      command: nginx -t
+      when: conf.changed or d1.changed or d2.changed
+      notify: restart nginx

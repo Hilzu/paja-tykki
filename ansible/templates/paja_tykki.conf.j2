@@ -1,0 +1,23 @@
+proxy_cache_path /var/lib/nginx/cache levels=1:2 keys_zone=paja_cache:10m inactive=24h max_size=1g;
+
+server {
+    listen 80;
+    listen [::]:80;
+    server_name paja.tykki.eu;
+    charset iso-8859-1;
+
+    access_log /var/log/nginx/paja/access.log;
+    error_log /var/log/nginx/paja/error.log;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+
+        proxy_cache paja_cache;
+        proxy_cache_valid 200 1h;
+        proxy_cache_bypass $http_cache_control;
+        proxy_cache_use_stale error timeout invalid_header updating http_500 http_502 http_503 http_504;
+        proxy_ignore_headers Set-Cookie;
+        add_header X-Cache-Status $upstream_cache_status;
+    }
+}
