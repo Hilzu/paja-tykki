@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Tykitä pajaa suoneen",
   "main": "app.js",
+  "repository": "Hilzu/paja-tykki",
   "scripts": {
     "test": "standard",
     "start": "node -r babel-register app.js",
