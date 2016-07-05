@@ -34,6 +34,7 @@
       docker_container:
         name: paja-tykki
         image: paja-tykki
+        restart_policy: always
         ports: "3000:3000"
 
     - name: Create nginx cache dir
