@@ -1,6 +1,6 @@
-import express from 'express'
-import fetch from 'node-fetch'
-import pajaify from './pajaify'
+const express = require('express')
+const fetch = require('node-fetch')
+const pajaify = require('./pajaify')
 
 const app = express()
 app.set('x-powered-by', false)

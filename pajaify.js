@@ -1,4 +1,4 @@
-import cheerio from 'cheerio'
+const cheerio = require('cheerio')
 
 const pajareissa = ' - pa&#8203;ja&#8203;reis&#8203;sa '
 const ga = `
@@ -17,7 +17,7 @@ const ga = `
 </script>
 `
 
-export default function pajaify (sourceHtml) {
+module.exports = function pajaify (sourceHtml) {
   const $ = cheerio.load(sourceHtml)
 
   lisääFobba($)
