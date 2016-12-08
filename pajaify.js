@@ -1,6 +1,6 @@
 const cheerio = require('cheerio')
 
-const pajareissa = ' - pa&#8203;ja&#8203;reis&#8203;sa '
+const pajareissa = ' - pa&#8203;ja&#8203;reis&#8203;sa'
 const ga = `
 <script type="text/javascript">
 
@@ -17,24 +17,13 @@ const ga = `
 </script>
 `
 
-module.exports = function pajaify (sourceHtml) {
-  const $ = cheerio.load(sourceHtml)
+const rewriteLink = (link) => link.replace(/http:\/\/(www\.)?iltalehti.fi/, '')
 
-  lisääFobba($)
-
-  hoidaVajarit($)
-
-  estäVajarit($)
-
-  return $.html()
+const estolääkitys = ($) => {
+  $('a[href]').attr('href', (idx, href) => rewriteLink(href))
 }
 
-function lisääFobba ($) {
-  $('head').find('script[src$="analytics.js"]').remove()
-  $('head').prepend(ga)
-}
-
-function hoidaVajarit ($) {
+const hoidaVajarit = ($) => {
   $('.vasen > p > a:not([class]) > span').before(pajareissa)
   $('.monikarki > ul > li > a').append(pajareissa)
   $('.monikarki > p > a').append(pajareissa)
@@ -75,10 +64,22 @@ function hoidaVajarit ($) {
   $('meta[property="og:url"]').attr('content', 'paja.tykki.eu')
 }
 
-function estäVajarit ($) {
-  $('a[href]').attr('href', (idx, href) => rewriteLink(href))
+const lisääFobba = ($) => {
+  const $head = $('head')
+  $head.find('script[src$="analytics.js"]').remove()
+  $head.prepend(ga)
 }
 
-function rewriteLink (link) {
-  return link.replace(/http:\/\/(www\.)?iltalehti.fi/, '')
+const pajaify = (sourceHtml) => {
+  const $ = cheerio.load(sourceHtml)
+
+  lisääFobba($)
+
+  hoidaVajarit($)
+
+  estolääkitys($)
+
+  return $.html()
 }
+
+module.exports = pajaify
