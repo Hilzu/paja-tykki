@@ -6,7 +6,7 @@ const app = express()
 app.set('x-powered-by', false)
 
 const sourceUrl = 'http://www.iltalehti.fi'
-const userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_4) AppleWebKit/601.5.17 (KHTML, like Gecko) Version/9.1 Safari/601.5.17'
+const userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/602.2.14 (KHTML, like Gecko) Version/10.0.1 Safari/602.2.14'
 const expireTime = new Date()
 expireTime.setFullYear(expireTime.getFullYear() + 1)
 const preventMobileSiteCookie = `ILChooseMobile=false; expires=${expireTime.toUTCString()}; domain=.iltalehti.fi; path=/`
